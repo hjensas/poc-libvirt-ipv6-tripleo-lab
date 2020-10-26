@@ -8,6 +8,10 @@ dnf install -y \
 	libvirt-python3 \
 	python3-lxml
 
+sudo dnf install -y https://trunk.rdoproject.org/centos8/component/tripleo/current/python3-tripleo-repos-0.1.1-0.20200909062930.1c4a717.el8.noarch.rpm
+
+sudo -E tripleo-repos -b train current
+
 ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
 
 ssh-copy-id root@localhost
@@ -23,7 +27,7 @@ cd ${IR_HOME}
 
 git clone https://github.com/redhat-openstack/infrared.git ${IR_HOME}
 cd ${IR_HOME}/infrared
-git fetch "https://review.gerrithub.io/redhat-openstack/infrared" refs/changes/73/504773/4 && git checkout -b change-504773-4 FETCH_HEAD
+git fetch "https://review.gerrithub.io/redhat-openstack/infrared" refs/changes/73/504773/5 && git checkout -b change-504773-5 FETCH_HEAD
 cd ${IR_HOME}
 
 mkdir ${IR_HOME}/tmp

@@ -92,3 +92,13 @@ infrared virsh \
     -e override.controller.os.variant=rhel8-unknown \
     |tee -ia ${LOGDIR}/${TS}_virsh_provsion.log
 
+
+sudo dnf install python3-virtualbmc -y
+systemctl enable virtualbmc.service
+systemctl start virtualbmc.service
+
+vbmc add --username admin --password password --address 172.16.0.1 --port 6240 controller-0
+vbmc start controller-0
+
+firewall-cmd --zone=libvirt --add-port=6240/udp
+
